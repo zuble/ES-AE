@@ -4,24 +4,23 @@ https://github.com/LSTS/dune
 https://github.com/jorgef1299/Mini-ASV
 
 
-1.      mkdir dune && cd dune
-2.      git clone https://github.com/LSTS/dune.git
-3.      cd .. && git clone https://github.com/jorgef1299/Mini-ASV.git
-4. name *Mini-ASV* folder to *private*
-5. mkdir dune/build
-6. folder tree:
+1.      mkdir dune && cd dune && git clone https://github.com/LSTS/dune.git
+2.      cd .. && git clone https://github.com/jorgef1299/Mini-ASV.git
+3. name *Mini-ASV* folder to *private*
+4. mkdir dune/build
+5. folder tree:
 
         dune/ [ private(mini-asv) + build(empty) + dune(source) ]
 
-7. copy *dune/private/etc/mini-asv.ini* to *dune/dune/etc/*
-8. change *mini-asv.ini*
+6. copy *dune/private/etc/mini-asv.ini* to *dune/dune/etc/*
+7. change *mini-asv.ini*
         
         ...
         [General]
         Vehicle  = caravela #mini-asv
         ...
 
-9.      cd build && cmake ../dune && make
+8.      cd build && cmake ../dune && make
             cmake : search for libraries
             make : compiles
 
