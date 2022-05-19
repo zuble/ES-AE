@@ -107,7 +107,7 @@
 # [nav1.mp4](https://send.vis.ee/download/4ca61c7c116eefb3/#AljB3xMDsp8WCmRkZxjPkQ)
 
 - 00:00 neptus
-- 05:00 imc autonomamente: imcpy / sh / neptus plugin em java
+- 05:00 imc autonomamente: [imcpy](https://github.com/oysstu/imcpy) / sh / neptus plugin em java
 - 07:30 dune definition
 - 08:00 toolchain overview
 - 16:30 mini-asv HW
