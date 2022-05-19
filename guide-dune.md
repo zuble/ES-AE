@@ -119,4 +119,8 @@
     - set gps start position inside neptus without modify (...).ini
     - 24:50 flash glues os rpi4@caravela + check if "mini-asv" appears in neptus / http:10.0.10.40:8080 @ caravela ip-port
 
+- ## plano
+    1. fazer passos 11 e 12 ( glued )
+    2. configurar/verificar ligacao com neptus/ip-port
+
 
