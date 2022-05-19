@@ -102,5 +102,21 @@
 12. [Compile a GLUED toolchain 4 cross compilation](https://github.com/LSTS/glued/wiki/Compile-a-GLUED-toolchain-for-cross-compilation)
 
 
+***
+
+# [nav1.mp4](https://send.vis.ee/download/4ca61c7c116eefb3/#AljB3xMDsp8WCmRkZxjPkQ)
+
+- 00:00 neptus
+- 05:00 imc autonomamente: imcpy / sh / neptus plugin em java
+- 07:30 dune definition
+- 08:00 toolchain overview
+- 16:30 mini-asv HW
+  - [MPU9250](https://invensense.tdk.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf) : [IMU](https://en.wikipedia.org/wiki/Inertial_measurement_unit)
+  - [QMC5883L](https://www.filipeflop.com/img/files/download/Datasheet-QMC5883L-1.0%20.pdf)
+- 18:40 imc messages overview 
+- 20:46 imc communication in code@mini-asv
+- 24:05 
+    - set gps start position inside neptus without modify (...).ini
+    - 24:50 flash glues os rpi4@caravela + check if "mini-asv" appears in neptus / http:10.0.10.40:8080 @ caravela ip-port
 
 
