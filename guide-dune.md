@@ -1,38 +1,30 @@
-# dune + mini-asv
+# essential info/util
 
-https://github.com/LSTS/dune
-https://github.com/jorgef1299/Mini-ASV
+- https://raw.githubusercontent.com/wiki/LSTS/dune/Workshops/Workshop-2014-11-17.pdf
 
+- https://autonaut.itk.ntnu.no/lib/exe/fetch.php?media=lsts_paper.pdf
 
-1.      mkdir dune && cd dune && git clone https://github.com/LSTS/dune.git
-2.      cd .. && git clone https://github.com/jorgef1299/Mini-ASV.git
-3. name *Mini-ASV* folder to *private*
-4. mkdir dune/build
-5. folder tree:
-
-        dune/ [ private(mini-asv) + build(empty) + dune(source) ]
-
-6. copy *dune/private/etc/mini-asv.ini* to *dune/dune/etc/*
-7. change *mini-asv.ini*
-        
-        ...
-        [General]
-        Vehicle  = caravela #mini-asv
-        ...
-
-8.      cd build && cmake ../dune && make
-            cmake : search for libraries
-            make : compiles
+- https://github.com/oysstu/imcpy
 
 
-# neptus
 
-https://github.com/LSTS/neptus
+* * *
 
-0.      java log    
-            java 8 or 11
 
-1.      git clone https://github.com/LSTS/neptus.git && cd neptus && ./gradlew
+# [Neptus](https://github.com/LSTS/neptus) 
+
+-     Neptus is the command and control software used by human operators to interact with networked vehicle systems (Dias el al. 2006)). Neptus supports different phases of a mission’s life cycle: planning, simulation, execution, revision and dissemination (Pinto et al. (2006)). Concurrent multi-vehicle operation is possible through specialized graphical interfaces, which evolved through the years according to the requirements provided by end-users.
+
+  - [Dias et al. 2006](https://ieeexplore.ieee.org/document/1642192)
+
+  - [Pinto et al. (2006)](https://repositorio-aberto.up.pt/bitstream/10216/71611/2/65254.pdf)
+
+
+0.     java log    
+
+           (java 8 or 11)
+
+1.     git clone https://github.com/LSTS/neptus.git && cd neptus && ./gradlew
 
             (...)
             Buildfile: /home/user/neptus/build.gradle
@@ -41,12 +33,74 @@ https://github.com/LSTS/neptus
             BUILD SUCCESSFUL in 1m 40s
             307 actionable tasks: 307 executed
 
-2.      ./neptus
+2.     ./neptus
 
 
-# dune
+***
+# [IMC](https://github.com/LSTS/imc) 
 
-10.     cd build && ./dune -c mini-asv -p Simulation
+-     The Inter-Module Communication (IMC) protocol, a message-oriented protocol designed and implemented for communication among heterogeneous vehicles, sensors and human operators. DUNE itself uses IMC for in-vehicle communication (Martins et al. (2009)).
+
+  - [Martins et al. (2009)](https://www.dcc.fc.up.pt/~edrdo/publications/papers/oceans09.pdf)
+
+  - [IMC-docs](https://www.lsts.pt/docs/imc/master/) 
+
+
+* * *
+
+
+# [DUNE](https://github.com/LSTS/dune) & [MINI-ASV](https://github.com/jorgef1299/Mini-ASV)
+ 
+
+- DUNE: Unified Navigational Environment is the runtime environment for vehicle on-board software. It is used to write generic embedded software at the heart of the vehicle, e.g. code for control, navigation, communication,sensor and actuator access, etc. It provides an operating system and architecture independent platform abstraction layer, written in C++, enhancing portability among different CPU architectures and operating systems.
+
+
+3.     mkdir dune && cd dune
+4.     git clone https://github.com/LSTS/dune.git && git clone https://github.com/jorgef1299/Mini-ASV.git
+5. change *dune/Mini-ASV* folder name to *private*
+6.     cd .. && mkdir build
+7. expected folder tree:
+
+       dune/ [ build(empty) + dune(source)/private(mini-asv) ]
+
+8.     cd build && cmake ../dune && make
+            cmake : search for libraries
+            make : compiles 
+
+9. change *private/etc/mini-asv.ini*
+        
+        (all Require lines must be like this)
+        [Require ../../etc/(.....)]
+        [Require ../../etc/(.....)]
+        ...
+        [General]
+        Vehicle  = caravela #mini-asv
+        ...
+
+10.     cd build && ./dune -c ../private/etc/mini-asv -p Simulation
+
+            -c : path relative to dune/etc
+            -p : Simulation or Hardware
+
+
+***
+
+
+# [glued](https://github.com/LSTS/glued)
+
+- *Lightweight Linux Distribution*: GLUED contains only the necessary packages to run on an embedded system, making it a light and fast distribution.
+
+- *Cross Compilation Ready* : Designed with cross compilation in mind, it is easy to get GLUED ready for your target system.
+
+- *Easy to Configure* : By editing simple text files and running short commands, you will be able to configure and cross compile GLUED for the target system.
+
+- *Compiled and Tested Against Many Platforms* : GLUED has been tested and compiled against Intel x86, Sun SPARC, ARM, PowerPC and MIPS.
+
+
+11. [Compile glued for a specific system/arch, our case rpi4](https://github.com/LSTS/glued/wiki/Compile-GLUED-for-a-system)
+
+12. [Compile a GLUED toolchain 4 cross compilation](https://github.com/LSTS/glued/wiki/Compile-a-GLUED-toolchain-for-cross-compilation)
+
 
 
 
