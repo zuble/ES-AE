@@ -13,7 +13,7 @@
 
 # [Neptus](https://github.com/LSTS/neptus) 
 
--     Neptus is the command and control software used by human operators to interact with networked vehicle systems (Dias el al. 2006)). Neptus supports different phases of a mission’s life cycle: planning, simulation, execution, revision and dissemination (Pinto et al. (2006)). Concurrent multi-vehicle operation is possible through specialized graphical interfaces, which evolved through the years according to the requirements provided by end-users.
+- Neptus is the command and control software used by human operators to interact with networked vehicle systems (Dias el al. 2006)). Neptus supports different phases of a mission’s life cycle: planning, simulation, execution, revision and dissemination (Pinto et al. (2006)). Concurrent multi-vehicle operation is possible through specialized graphical interfaces, which evolved through the years according to the requirements provided by end-users.
 
   - [Dias et al. 2006](https://ieeexplore.ieee.org/document/1642192)
 
@@ -39,7 +39,7 @@
 ***
 # [IMC](https://github.com/LSTS/imc) 
 
--     The Inter-Module Communication (IMC) protocol, a message-oriented protocol designed and implemented for communication among heterogeneous vehicles, sensors and human operators. DUNE itself uses IMC for in-vehicle communication (Martins et al. (2009)).
+- The Inter-Module Communication (IMC) protocol, a message-oriented protocol designed and implemented for communication among heterogeneous vehicles, sensors and human operators. DUNE itself uses IMC for in-vehicle communication (Martins et al. (2009)).
 
   - [Martins et al. (2009)](https://www.dcc.fc.up.pt/~edrdo/publications/papers/oceans09.pdf)
 
