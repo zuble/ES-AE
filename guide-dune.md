@@ -112,7 +112,8 @@
 - 08:00 toolchain overview
 - 16:30 mini-asv HW
   - [MPU9250](https://invensense.tdk.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf) : [IMU](https://en.wikipedia.org/wiki/Inertial_measurement_unit)
-  - [QMC5883L](https://www.filipeflop.com/img/files/download/Datasheet-QMC5883L-1.0%20.pdf)
+  - [QMC5883L](https://www.filipeflop.com/img/files/download/Datasheet-QMC5883L-1.0%20.pdf) 
+  - [RPI4](https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-datasheet.pdf)
 - 18:40 imc messages overview 
 - 20:46 imc communication in code@mini-asv
 - 24:05 
@@ -123,16 +124,16 @@
     1. fazer passos 11 e 12 ( glued )
     2. configurar/verificar ligacao com neptus/ip-port
 
-# [SD files](https://send.vis.ee/download/7a54fab7387baa6f/#d-7LCYmKJP0TfQ4Tnvoo4A)
+# SD files
   
-  - *pi.zip* : home folder ( bando de opencv ) 
+  - [*pi.zip*](https://send.vis.ee/download/dbfa6fb7d60bf84a/#IU361zq4tGEGbS6KJOJrKw) : home folder ( bando de opencv ) 
   
-  - *miniasv-sd-orig.img.gz*  : shrinked + compressed sd card img ( boot + rootfs )
+  - [*miniasv-sd-orig.img.gz*](https://send.vis.ee/download/1ae4b783e9ff5c56/#4lSzAGuY8ck_7esYGQxGjQ)  : shrinked + compressed sd card ( boot + rootfs )
       
       1. to restore into original shrinked state .img (11gb) aka uncompress
 
         sudo gunzip miniasv-sd-orig2.img.gz    ~ deletes the .gz file afterwards
         sudo gzip -dk miniasv-sd-orig2.img.gz  ~ keeps it
       
-      2. to double click miniasv-sd-orig.img to mount in your system
+      2. to double click miniasv-sd-orig.img to mount in your system aka get acess to the files
  
