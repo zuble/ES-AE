@@ -1,16 +1,3 @@
-# essential info/util
-
-- https://raw.githubusercontent.com/wiki/LSTS/dune/Workshops/Workshop-2014-11-17.pdf
-
-- https://autonaut.itk.ntnu.no/lib/exe/fetch.php?media=lsts_paper.pdf
-
-- https://github.com/oysstu/imcpy
-
-
-
-* * *
-
-
 # [Neptus](https://github.com/LSTS/neptus) 
 
 - Neptus is the command and control software used by human operators to interact with networked vehicle systems (Dias el al. 2006)). Neptus supports different phases of a mission’s life cycle: planning, simulation, execution, revision and dissemination (Pinto et al. (2006)). Concurrent multi-vehicle operation is possible through specialized graphical interfaces, which evolved through the years according to the requirements provided by end-users.
@@ -67,7 +54,7 @@
             cmake : search for libraries
             make : compiles 
 
-9. change *private/etc/mini-asv.ini*
+9. change *private/etc/mini-asv.ini* && mv mini-asv.ini dune/etc/
         
         (all Require lines must be like this)
         [Require ../../etc/(.....)]
@@ -77,7 +64,7 @@
         Vehicle  = caravela #mini-asv
         ...
 
-10.     cd build && ./dune -c ../etc/mini-asv -p Simulation
+10.     cd build && ./dune -c mini-asv -p Simulation
 
             -c : path relative to dune/etc
             -p : Simulation or Hardware
@@ -88,26 +75,18 @@
 
 # [GLUED](https://github.com/LSTS/glued)
 
-*Lightweight Linux Distribution*: GLUED contains only the necessary packages to run on an embedded system, making it a light and fast distribution.
-
-*Cross Compilation Ready* : Designed with cross compilation in mind, it is easy to get GLUED ready for your target system.
-
-*Easy to Configure* : By editing simple text files and running short commands, you will be able to configure and cross compile GLUED for the target system.
-
-*Compiled and Tested Against Many Platforms* : GLUED has been tested and compiled against Intel x86, Sun SPARC, ARM, PowerPC and MIPS.
-
   ***
   *everything below is done in personal machine*
 
-11. ## get **GLUED** OS ready 4 pi 
+11. ## get pi4 compilers
 
-    [Compile glued for a specific system/arch, our case rpi4](https://github.com/LSTS/glued/wiki/Compile-GLUED-for-a-system)
+    [Compile glued for a specific system/arch](https://github.com/LSTS/glued/wiki/Compile-GLUED-for-a-system)
 
         git clone https://github.com/LSTS/glued.git
         cd glued && cd docker
         make && make shell DNS=8.8.4.4  (tried with quad9 , 9.9.9.9)
 
-      generate system's configuration fromgit branch feature/new-master
+      generate system's configuration from git branch feature/new-master
     
         ./mkconfig.bash rpi4-template : from .conf to .bash
     
@@ -115,16 +94,18 @@
 
         ./mksystem.bash lctr-rpi4/rpi4-template
       
+      located at */glued/lctr-rpi4/toolchain/bin/*
+
+    ***
+
+12. ### GLUED 2 **SD card**
+
       generate rootfs 
 
         ./pkrootfs.bash lctr-rpi4/rpi4-template.bash   : from bash to .tar.bz2
-
-    now you have a compatible glued OS for the pi
-  
-    ***
-
-12. ### flash GLUED 2 **SD card**
       
+      flash it 
+
         ./mkdisk.bash lctr-rpi4/test-rpi-eth0.bash /dev/sdb   
 
     ***
@@ -185,11 +166,20 @@
   - lighten current sd size 
     - criar raspbian headless 32b + flashar com config miniasv+p30
     - scp /es/dune/build/dune.tar.bz2 para pi
-  
-  ***
+
   - IMC 
     - read (plan supervision + maneuvering) messages
       https://www.lsts.pt/docs/imc/master/ 
     
-    - imcpy
   
+***
+***
+
+# essential info/util
+
+- https://raw.githubusercontent.com/wiki/LSTS/dune/Workshops/Workshop-2014-11-17.pdf
+
+- https://autonaut.itk.ntnu.no/lib/exe/fetch.php?media=lsts_paper.pdf
+
+- https://github.com/oysstu/imcpy
+
