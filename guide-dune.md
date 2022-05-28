@@ -77,7 +77,7 @@
         Vehicle  = caravela #mini-asv
         ...
 
-10.     cd build && ./dune -c ../private/etc/mini-asv -p Simulation
+10.     cd build && ./dune -c ../etc/mini-asv -p Simulation
 
             -c : path relative to dune/etc
             -p : Simulation or Hardware
@@ -107,105 +107,44 @@
         cd glued && cd docker
         make && make shell DNS=8.8.4.4  (tried with quad9 , 9.9.9.9)
 
-      generate system's configuration 
+      generate system's configuration fromgit branch feature/new-master
     
-        ./mkconfig.bash test-rpi-eth0  : from .conf to .bash
-
-            test-rpi-eth0.conf : 
-              cfg_hostname='test-rpi'
-              cfg_eth_ext_ip='10.0.200.52'
-              cfg_services1=''
-              cfg_packages='dropbear rsync busybox e2fsprogs dosfstools ptpd rpcbind 
-                            rpi-boot-firmware linux/rpi exiftool libusb'
-              cfg_services0='network dropbear storage upgrade syslog ptpd'
-              cfg_modules="$cfg_modules ftdi_sio"
-              cfg_terminal='tty1'
-              cfg_ptpd_interface='eth0'
-      
+        ./mkconfig.bash rpi4-template : from .conf to .bash
+    
       compile packages & chill
 
-        ./mksystem.bash lctr-rpi/test-rpi-eth0.bash
+        ./mksystem.bash lctr-rpi4/rpi4-template
       
       generate rootfs 
 
-        ./pkrootfs.bash lctr-rpi/test-rpi-eth0.bash   : from bash to .tar.bz2
+        ./pkrootfs.bash lctr-rpi4/rpi4-template.bash   : from bash to .tar.bz2
 
     now you have a compatible glued OS for the pi
   
     ***
 
-12. ## flash GLUED 2 **SD card**
+12. ### flash GLUED 2 **SD card**
       
-        ./mkdisk.bash lctr-rpi/test-rpi-eth0.bash /dev/sdb   
-        
-      we changed root0/etc/config  (sudo chmod 644 config)
-        
-        before
-          cfg_eth_ext_gw=10.0.0.1
-          cfg_eth_ext_ip=10.0.200.52
-          cfg_eth_ext_mk=255.255.0.0
-        after
-          cfg_eth_ext_gw=192.168.1.254
-          cfg_eth_ext_ip=192.168.1.5
-          cfg_eth_ext_mk=255.255.255.0
+        ./mkdisk.bash lctr-rpi4/test-rpi-eth0.bash /dev/sdb   
 
     ***
 
-  13. ## get **DUNE** ready 4 pi
-
-      by indicating the respective compilers of our system at
-
-      /glued/lctr-rpi/toolchain/bin/armv7-lsts-linux-gnueabihf- 
-    
-      DUNE is cross-compiled
-
+13. ## get **DUNE** cross compiled to rpi
+  
           cd dune/build
-          cmake ../dune -DCROSS=/home/engsolar/infernoup/ES/glued/lctr-rpi/toolchain/bin/armv7-lsts-linux-gnueabihf-
-          make package -j8
+          cmake ../dune -DCROSS=/home/engsolar/es/glued/lctr-rpi4/toolchain/bin/armv7-lsts-linux-gnueabihf-
+          make package -j8  :uses 8 cores to get tar.bz2
 
       *dune-2022.04.0-armv7-32bit-linux-glibc-gcc4x.tar.bz2* generated
       
       **this tar goes into /opt/lsts/**
-    
-***
-  
-# raspbian
 
-  - ## headless from boot
-  
-      place files inside */boot* so when booted it overwrites atual settings 
+      or its possible to compile inside pi following the 3-10 steps.
 
-    - **network**: *wpa_supplicant.conf*
+  14. ## START **DUNE**
 
-          ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-          country=PT
-          update_config=1
-
-          network={
-          ssid="fodafone"
-          psk="f1"
-          }
-      after boot is placed in /etc/
-
-          nmap -sn 192.168.1.0/24    : scan networks
-
-    - **ssh**: *ssh*
-
-      empty or not , doesnt matter
-    
-    - **user**: *userconf.txt*
-
-      single line of text
-
-            username:password
-            
-            password ->  echo 'mypassword' | openssl passwd -6 -stdin
-    
-    ***
-
-  - ## w/ monitor
-
-        sudo rapi-config          
+          cd /opt/lsts/dune/build/ && sudo su
+          ./dune -c mini-asv -p Hardware
   
 ***
 
@@ -225,10 +164,6 @@
     - set gps start position inside neptus without modify (...).ini
     - 24:50 flash glues os rpi4@caravela + check if "mini-asv" appears in neptus / http:10.0.10.40:8080 @ caravela ip-port
 
-- ## plano
-    1. fazer passos 11 e 12 ( glued )
-    2. configurar/verificar ligacao com neptus/ip-port
-
 ***
 # SD files original
   
@@ -243,3 +178,18 @@
       
       2. to double click miniasv-sd-orig.img to mount in your system aka get acess to the files
  
+***
+
+# to do
+
+  - lighten current sd size 
+    - criar raspbian headless 32b + flashar com config miniasv+p30
+    - scp /es/dune/build/dune.tar.bz2 para pi
+  
+  ***
+  - IMC 
+    - read (plan supervision + maneuvering) messages
+      https://www.lsts.pt/docs/imc/master/ 
+    
+    - imcpy
+  
