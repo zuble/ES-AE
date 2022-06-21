@@ -79,10 +79,11 @@ class KeyboardActor(DynamicActor):
                 spec.start_man_id = 'maneuver0'
                 spec.description = 'A test plan sent from imcpy'
 
-                 # Compute vehicle atual lat/lon
+                # Compute vehicle atual lat/lon
                 lat, lon, hae = imcpy.coordinates.toWGS84(self.estate)
                 print('SELF_WGS84(rads):',lat,lon,'\n')
 
+                # plan maneuver creation for each pair of entries in coord.csv (lat, lon..)
                 print(chall_coord)
                 for i in range(int(len(chall_coord)/2)):
                     # Define manouver name according to waypoint
@@ -107,9 +108,20 @@ class KeyboardActor(DynamicActor):
                     pman.maneuver_id = 'maneuver' + str(i)
                     print(man)
 
-                    print("Adding Maneuver to PlanSpecification")
+                    print("Adding Maneuver",2*i," to PlanSpecification")
                     spec.maneuvers.append(pman)
-                      
+                
+                # plan transition for each pair of plan maneuvers
+                for i in range(int(len(chall_coord)/2)):
+                    
+                    trans = imcpy.PlanTransition()
+                    maneuver_id = 'maneuver' + str(2*i)
+                    trans.source_man = maneuver_id
+                    maneuver_id = 'maneuver' + str(2*i+1)
+                    trans.dest_man = maneuver_id
+
+                    print("Adding Transition",2*i," to PlanSpecification")
+                    spec.maneuvers.append(trans)
 
                 print("Starting plan\n",spec,"\n")
                 pc = imcpy.PlanControl()
