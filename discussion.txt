@@ -1,0 +1,26 @@
+usv w/ rpi4 communication
+
+Hello Øystein
+
+As you said, i will use this medium for our doubts, to help others in the future.
+
+To contextualize, our actual project from the course of Engineering of Systems at FEUP, is in essence a challenge demonstration that consists of complete a USV route, which coordinates are extracted automatically (a set of sea deployed floats) from a aerial drone photo. 
+According to those, we have to create a plan with a set of go to messages within the imcpy and send them to the vehicle.
+
+- Atm the extracting python tool is perfectly working and is able to output a set of coordinates. 
+- We have full communication trough ssh with the vehicle, with a LAN connection PC<--->phone<--->USV , that incorporates a rpi4, as well as a functional instance of dune with all peripherals running ok.
+- We were also able to test [the keyboard input example](https://github.com/oysstu/imcpy/blob/master/examples/keyboard_input_example.py) in Simulation mode, although only in a PC dune instance, and confirm inside Neptus with success. Next step will be to test in the vehicle.
+
+So, at this point we have some conceptual doubts. 
+When that example is running, does it find for it self a running dune with the indicated name at  `actor = KeyboardActor('lauv-simulator-1')` ? 
+Does is whatever the received console matching input defined here
+
+```
+def on_console(self, line):
+        if line == 'exit':
+          ...
+        elif line == 'stop':
+          ...
+        elif line == 'start':
+         ...
+```

@@ -156,7 +156,9 @@
 
         sudo gunzip miniasv-sd-orig2.img.gz    ~ deletes the .gz file afterwards
         sudo gzip -dk miniasv-sd-orig2.img.gz  ~ keeps it
-      
+        
+        sudo tar -xvjf foo.tar.bz2             ~ extract and umcompress
+
       2. to double click miniasv-sd-orig.img to mount in your system aka get acess to the files
  
 ***
@@ -165,7 +167,7 @@
 
   - lighten current sd size 
     - criar raspbian headless 32b + flashar com config miniasv+p30
-    - scp /es/dune/build/dune.tar.bz2 para pi
+    - scp /es/dune/build/dune.tar.bz2 para pi OR simple sudo su && cp ...
 
   - IMC 
     - read (plan supervision + maneuvering) messages
@@ -173,6 +175,11 @@
     
   
 ***
+
+    sudo nano ~/.bashrc
+    alias cddunebuild="sudo su && cd /opt/lsts"
+    exec bash
+
 ***
 
 # essential info/util
