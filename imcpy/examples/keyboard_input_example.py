@@ -121,7 +121,7 @@ class KeyboardActor(DynamicActor):
                     trans.dest_man = maneuver_id
 
                     print("Adding Transition",2*i," to PlanSpecification")
-                    spec.maneuvers.append(trans)
+                    spec.transitions.append(trans)
 
                 print("Starting plan\n",spec,"\n")
                 pc = imcpy.PlanControl()
