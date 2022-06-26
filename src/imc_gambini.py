@@ -1,16 +1,15 @@
 """
-Illustrates how to run an actor which responds to console input (e.g. over ssh).
-"""
+Addapted from gh imcpy/examples/keyboard_input_example.py
 
+Communication over terminal with any running dune instance in the same lan/wifi-acess-point
+"""
 
 import logging
 import sys
 from typing import Tuple
 import asyncio
 import numpy as np
-
 import csv
-
 import imcpy
 from imcpy.actors.dynamic import DynamicActor
 from imcpy.decorators import Subscribe, RunOnce
@@ -102,31 +101,30 @@ class KeyboardActor(DynamicActor):
                 spec.description = 'A test plan sent from imcpy'
 
                 print(".\n.\n.\n.\nCreating a PlanManeuver w/ a Goto message for each wp")
-                # plan maneuver creation for each pair of entries in coord.csv ((lat0,lon0);(lat1,lon1)..)
                 for i in range(int(len(chall_coord)/2)):
+                    #Goto message 4 each pair of entries in coord.csv ((lat0,lon0);(lat1,lon1)..)
                     man = imcpy.Goto()
                     man.z = 0.0
                     man.z_units = imcpy.ZUnits.DEPTH
-                    
                     #man.lat, man.lon = imcpy.coordinates.WGS84.displace(lat, lon, n=100.0, e=0.0)
                     man.lat = chall_coord_rad[2*i]      #0,2,4..
                     man.lon = chall_coord_rad[2*i+1]    #1,3,5..
-                    goto = "goto"+str(i)+": "
-                    print('\n',goto,man.lat,',',man.lon)
-                
                     man.speed = 5
                     man.speed_units = imcpy.SpeedUnits.METERS_PS
+
+                    goto = "goto"+str(i)+": "
+                    print('\n',goto,man.lat,',',man.lon,', speed',man.speed)
                 
-                    # Add to PlanManeuver message
+                    # Add it to PlanManeuver message
                     pman = imcpy.PlanManeuver()
                     pman.data = man
                     pman.maneuver_id = 'maneuver' + str(i)
 
-                    print(" Adding PlanManeuver",i," to PlanSpecification")
                     spec.maneuvers.append(pman)
+                    print("PlanManeuver",i," added to PlanSpecification")
 
 
-                print(".\n.\n.\n.\nCreating a PlanTransition between wp")
+                print(".\n.\n.\n.\nCreating a PlanTransition between the wp")
                 for i in range(int(len(chall_coord)/2)-1):
                     
                     trans = imcpy.PlanTransition()
@@ -139,8 +137,8 @@ class KeyboardActor(DynamicActor):
                     tr = "tr"+str(i)+": "
                     print('\n',tr,man_src,'->',man_dest)
 
-                    print(" Adding Transition",i," to PlanSpecification")
                     spec.transitions.append(trans)
+                    print("Transition",i," added to PlanSpecification")
 
 
                 print(".\n.\n.\nCreating PlanControl")
@@ -152,7 +150,7 @@ class KeyboardActor(DynamicActor):
 
                 
                 self.send(self.estate, pc)
-                print(".\n.\n.\nPlan sent to Gambozino")
+                print(".\n.\n.\nPlan sent to Gambozino aquatic voiture")
         else:
             logger.error('Unknown command')
 

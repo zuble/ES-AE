@@ -47,12 +47,12 @@
 
 5. ### Run the GroundStation~USV IMC Communicator script
 
-       python imc_usv.py
+       python imc_gambini.py
 
-       wp : Waypoints Description extrated from the .csv file
+        wp : Waypoints Description extrated from the .csv file
 
-       start : IMC Plan Definition Phase + Vehicle Send 
+        start : IMC Plan Definition Phase + Vehicle Send 
 
-       stop : not accuratte , Abort in Neptus
+        stop : not accuratte , Abort in Neptus
 
-       exit : Terminate Actor loop
+        exit : Terminate Actor loop
