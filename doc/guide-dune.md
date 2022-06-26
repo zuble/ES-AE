@@ -54,7 +54,7 @@
             cmake : search for libraries
             make : compiles 
 
-9. change *private/etc/mini-asv.ini* && mv mini-asv.ini dune/etc/
+9. change *private/etc/mini-asv.ini* into
         
         (all Require lines must be like this)
         [Require ../../etc/(.....)]
@@ -64,7 +64,10 @@
         Vehicle  = caravela #mini-asv
         ...
 
-10.     cd build && ./dune -c mini-asv -p Simulation
+      
+10.     mv mini-asv.ini dune/etc/
+
+11.     cd build && ./dune -c mini-asv -p Simulation
 
             -c : path relative to dune/etc
             -p : Simulation or Hardware
